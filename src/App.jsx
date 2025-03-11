@@ -1,30 +1,28 @@
-
-import PropsBasic from './components/01-PropsBasic';
-import ValueProps from './components/02-ValueProps';
-import PropsPass from './components/03-PropsPass';
-import './App.css';
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
+import Navbar from "./components/Navbar";
+import ProtectedRoute from "./routes/ProtectedRoutes";
+import "./App.css";
 function App() {
-  let dtype='template'+2.0
-  let anyData="This "+"is Javascript "+ dtype +" Called template"
-
   return (
-    <>
-     <PropsBasic name="Shibham" title="Gupta"/>
+    <Router>
+      <Navbar/>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
 
-     <ValueProps 
-       strData="This is String Data"
-       numData={123}
-       boolData={false}
-       objData={{name:"Shibham", title:"Gupta"}}
-       arrData={[1,2,3,4,5,6,5,8,9,10]}
-       jsxData={2+2+2+14-3-(2/3)*(23*5)}
-       anyData={anyData}
-     />
 
-     <PropsPass students={['Arnab','Atanu','Shibham','Supriya','Karan','Debjani','Anish']}/>
-    </>
-  )
+        {/* Protected Route */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;

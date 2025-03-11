@@ -3,12 +3,12 @@ import React from 'react'
 const PropsPass = ({students}) => {
   return (
     <div>
-      <ul>
+      
        {students.map( (element,index) => (
-         <li key={index}><p>Key:{index}  Value: {element}</p></li>
+         <h1 key={index}><p>Key:{index} | Value: {element}</p></h1>
        ))}
         
-      </ul>
+    
     </div>
   )
 }
